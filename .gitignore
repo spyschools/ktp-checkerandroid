@@ -1,0 +1,36 @@
+# Node.js dependencies and logs
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# NativeScript / Android generated build files
+platforms/
+dist/
+.gradle/
+**/local.properties
+coverage/
+*.js.map
+
+# Build artifacts (publish release files through GitHub Releases instead)
+*.apk
+*.aab
+
+# Signing keys and local signing configuration: never commit these
+*.jks
+*.keystore
+*.p12
+*.mobileprovision
+*.provisionprofile
+key.properties
+
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# Editors and operating systems
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
