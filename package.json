@@ -1,0 +1,25 @@
+{
+  "name": "ktp-checkerandroid",
+  "version": "2.0.0",
+  "description": "Pemeriksaan pola dasar NIK Indonesia secara lokal di perangkat Android.",
+  "author": "Fariz Azhari",
+  "license": "MIT",
+  "homepage": "https://github.com/spyschools/ktp-checkerandroid",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/spyschools/ktp-checkerandroid.git"
+  },
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "android": "ns run android",
+    "build:android": "ns build android --env.production"
+  },
+  "dependencies": {
+    "@nativescript/core": "~9.0.20"
+  },
+  "devDependencies": {
+    "@nativescript/android": "9.1.1",
+    "@nativescript/webpack": "~5.0.0",
+    "typescript": "~5.8.3"
+  }
+}
