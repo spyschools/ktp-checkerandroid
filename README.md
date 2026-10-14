@@ -1,8 +1,8 @@
 # KTP Checker Android
 
-Aplikasi Android untuk memeriksa **pola dasar** NIK Indonesia secara lokal di perangkat. Kode sumber versi ini dimodernisasi dari arsip proyek KTP Checker yang diberikan, menggunakan NativeScript 9 dan target Android 16/API 36.
+Aplikasi Android untuk memeriksa **pola dasar** NIK Indonesia secara lokal di perangkat. Versi sumber ini dimodernisasi dari arsip proyek KTP Checker yang diberikan, menggunakan NativeScript 9 dan target Android 16/API 36.
 
-> **Penting:** aplikasi ini bukan layanan Dukcapil dan tidak mengakses atau memverifikasi NIK terhadap database pemerintah. Status “struktur NIK sesuai pola” hanya berarti format dan bagian tanggal lolos pemeriksaan lokal; itu **bukan bukti** bahwa identitas, NIK, atau KTP asli, terdaftar, atau aktif.
+> **Penting:** aplikasi ini bukan layanan Dukcapil dan tidak mengakses atau memverifikasi NIK terhadap basis data pemerintah. Status “struktur NIK sesuai pola” hanya berarti format dan bagian tanggal lolos pemeriksaan lokal. Itu **bukan bukti** bahwa identitas, NIK, atau KTP asli, terdaftar, atau aktif.
 
 ## Informasi versi
 
@@ -10,43 +10,43 @@ Aplikasi Android untuk memeriksa **pola dasar** NIK Indonesia secara lokal di pe
 | --- | --- |
 | Nama aplikasi | KTP Checker |
 | Versi sumber | `2.0.0` |
-| Tanggal rilis sumber | 15 Oktober 2026 |
+| Tanggal metadata rilis sumber | 15 Oktober 2026 |
 | Pengembang versi ini | Fariz Azhari |
-| Profil GitHub | https://github.com/spyschools |
-| URL repositori yang disarankan | https://github.com/spyschools/ktp-checkerandroid |
+| Profil GitHub | <https://github.com/spyschools> |
+| Repository | <https://github.com/spyschools/ktp-checkerandroid> |
 | NativeScript Core | 9.0.x |
-| Android target | Android 16 / API 36 |
-| Android minimum | API 23 |
+| Target Android | Android 16 / API 36 |
+| Minimum Android API | 23 |
 | Lisensi | MIT; lihat `LICENSE` dan kredit proyek asal |
 
-Tanggal di atas adalah metadata rilis sumber yang disiapkan pada 15 Oktober 2026. Paket ini tidak membuat GitHub Release, tidak mengunggah repo secara otomatis, dan belum menyertakan APK yang telah dikompilasi atau ditandatangani.
+Tanggal tersebut adalah metadata versi sumber, bukan bukti bahwa APK sudah dibangun, diuji pada semua perangkat, atau diterbitkan sebagai GitHub Release. Repository ini belum menyertakan APK yang telah dikompilasi dan ditandatangani.
 
 ## Fitur
 
-- Memeriksa jumlah digit dan bagian tanggal yang dikodekan dalam pola NIK.
+- Memeriksa panjang dan format digit NIK serta bagian tanggal lahir yang dikodekan dalam polanya.
 - Menguraikan jenis kelamin menurut konvensi angka tanggal dan menghitung perkiraan usia.
 - Menampilkan enam digit kode wilayah sebagai kode saja; aplikasi tidak menebak nama provinsi/kabupaten/kecamatan dari kode tersebut.
-- Menyimpan riwayat lokal maksimal 30 entri dan menyediakan tombol untuk menghapusnya.
-- Kode pemeriksaan tidak memanggil API atau mengirim NIK ke server; tidak menambahkan izin kontak, lokasi, atau penyimpanan eksternal.
-- Menyediakan tes unit untuk fungsi pemeriksaan pola NIK.
+- Menyimpan riwayat lokal maksimal 30 entri serta menyediakan opsi untuk menghapusnya.
+- Pemeriksaan pola NIK dilakukan di perangkat. Kode parser tidak mengirim NIK ke server atau memanggil API.
+- Menyediakan unit test untuk fungsi pemeriksaan pola NIK dan workflow GitHub Actions untuk menjalankannya.
 
-### Batasan dan privasi
+## Batasan dan privasi
 
-- Tidak ada integrasi API atau basis data Dukcapil, sehingga keaslian dan status kependudukan tidak dapat disimpulkan.
-- Riwayat disimpan di penyimpanan privat aplikasi pada perangkat, tetapi tidak dienkripsi secara terpisah. Hapus riwayat sebelum menyerahkan perangkat kepada orang lain atau bila tidak lagi dibutuhkan.
-- Nama/alias bersifat opsional. Sebaiknya gunakan data uji dan jangan memasukkan data pribadi pihak lain tanpa izin.
-- Penafsiran tahun dua digit adalah perkiraan, bukan sumber tanggal lahir resmi.
+- Tidak ada integrasi API atau basis data Dukcapil, sehingga keaslian dan status administrasi kependudukan tidak dapat diverifikasi.
+- Riwayat disimpan di penyimpanan privat aplikasi pada perangkat, tetapi tidak dienkripsi secara terpisah. Hapus riwayat saat tidak lagi diperlukan atau sebelum menyerahkan perangkat kepada orang lain.
+- Nama/alias bersifat opsional. Gunakan data uji dan jangan memasukkan data pribadi pihak lain tanpa izin.
+- Penafsiran tahun dua digit merupakan perkiraan, bukan sumber tanggal lahir resmi.
 
-## Persiapan
+## Persiapan pengembangan
 
-Install alat berikut di komputer:
+Pasang alat berikut di komputer:
 
 1. **Node.js 22 LTS** dan npm.
 2. **JDK 17**.
 3. **Android Studio** beserta Android SDK Platform 36, Android SDK Build-Tools 36, dan Android SDK Command-line Tools.
 4. NativeScript CLI 9.x.
 
-Pasang CLI:
+Pasang NativeScript CLI dan periksa lingkungan Android:
 
 ```bash
 npm install --global nativescript@9.0.6
@@ -54,9 +54,11 @@ ns --version
 ns doctor android
 ```
 
-Versi CLI yang lebih baru dapat digunakan bila kompatibel dengan dependensi yang dideklarasikan di `package.json`.
+Versi CLI lain dapat digunakan bila kompatibel dengan dependensi yang dideklarasikan di `package.json`.
 
 ## Instalasi dan menjalankan aplikasi
+
+Jika repository sudah tersedia di GitHub:
 
 ```bash
 git clone https://github.com/spyschools/ktp-checkerandroid.git
@@ -66,55 +68,66 @@ npm test
 ns run android
 ```
 
-Pastikan emulator Android sudah berjalan atau aktifkan **Developer options** dan **USB debugging** pada perangkat Android, lalu sambungkan ke komputer. Jika belum memiliki repositori GitHub dengan nama tersebut, buat repositori kosong terlebih dahulu di akun `spyschools`, kemudian jalankan perintah `git clone` setelah URL tersedia.
+Pastikan emulator Android sudah berjalan atau aktifkan **Developer options** dan **USB debugging** pada perangkat Android, lalu sambungkan ke komputer.
+
+## Menjalankan unit test
+
+Parser NIK menggunakan modul bawaan Node.js, sehingga pengujian unit tidak memerlukan Android SDK:
+
+```bash
+npm test
+```
+
+Tes mencakup panjang NIK, digit, tanggal laki-laki/perempuan, tanggal kalender, dan tahun kabisat. Tes ini memeriksa logika pola lokal, bukan validitas data administrasi kependudukan.
+
+Workflow `.github/workflows/test.yml` menjalankan `npm test` ketika ada push ke cabang `main`, pull request, atau pemicu manual melalui tab **Actions**. Workflow ini hanya menjalankan unit test JavaScript; workflow tersebut **tidak membangun atau menguji APK Android**.
 
 ## Build APK debug
+
+Dengan JDK, NativeScript CLI, dan Android SDK yang sudah disiapkan:
 
 ```bash
 npm install
 npm test
-ns build android --env.production
+ns build android
 ```
 
-NativeScript biasanya menaruh APK debug di bawah:
+Lokasi APK debug yang umum adalah:
 
 ```text
 platforms/android/app/build/outputs/apk/debug/app-debug.apk
 ```
 
-Lokasi keluaran dapat berubah sesuai versi tooling. APK debug cocok untuk pengujian; untuk distribusi publik, buat build release dan tanda tangani dengan keystore milik Anda. **Jangan** commit keystore atau kata sandinya ke GitHub. Untuk rilis Google Play, periksa kembali persyaratan Play Console, pengujian perangkat, kebijakan privasi, dan penandatanganan AAB terbaru sebelum mengirimkan aplikasi.
+Lokasi keluaran bisa berubah mengikuti versi tooling. APK debug ditujukan untuk pengujian. Untuk distribusi publik, buat build release dan tanda tangani dengan keystore milik Anda. **Jangan** mengunggah keystore atau kata sandinya ke GitHub. Untuk Google Play, periksa kembali persyaratan Play Console, pengujian perangkat, kebijakan privasi, dan penandatanganan AAB sebelum mengirimkan aplikasi.
 
-## Tes
+## Mengunggah perubahan secara manual lewat situs GitHub
 
-Fungsi parser tidak memerlukan Android SDK untuk dites:
+Untuk memperbarui repository <https://github.com/spyschools/ktp-checkerandroid> melalui browser:
 
-```bash
-npm test
-```
+1. Ekstrak ZIP perubahan yang disiapkan dan pertahankan struktur foldernya.
+2. Pada halaman repository, pilih **Add file → Upload files** untuk mengunggah `README.md` dan `nativescript.config.ts` ke root repository. Unggah `.gitignore` juga jika browser menampilkan berkas tersembunyi; jika tidak, buat berkas baru bernama `.gitignore` dari menu **Add file → Create new file** lalu salin isinya.
+3. Buat `.github/workflows/test.yml` melalui **Add file → Create new file**. Masukkan nama jalur lengkap itu sebagai nama berkas, lalu salin isi workflow dari paket perubahan.
+4. Periksa pratinjau perubahan, masukkan pesan commit, misalnya `Perbaiki konfigurasi resource dan workflow test`, lalu klik **Commit changes**.
+5. Buka tab **Actions** untuk melihat hasil workflow. Status hijau berarti unit test JavaScript berhasil; itu bukan bukti bahwa APK telah berhasil dibangun atau diuji pada perangkat Android.
 
-Tes meliputi panjang NIK, digit, tanggal laki-laki/perempuan, tanggal kalender, dan tahun kabisat. Tes tersebut memeriksa logika lokal, bukan validitas data administrasi kependudukan.
+Jika mengunggah folder tersembunyi melalui browser tidak berjalan dengan baik, buat file `.gitignore` dan `.github/workflows/test.yml` satu per satu seperti langkah di atas.
 
-## Upload kode sumber ke GitHub
-
-1. Buka [https://github.com/new](https://github.com/new) dan pastikan akun yang aktif adalah `spyschools`.
-2. Isi **Repository name** dengan `ktp-checkerandroid`, pilih **Public** atau **Private** sesuai kebutuhan, lalu klik **Create repository**. Untuk mengunggah manual, jangan centang opsi untuk membuat README, `.gitignore`, atau lisensi karena semuanya sudah tersedia dalam paket sumber.
-3. Ekstrak ZIP di komputer Anda. Buka repository kosong di GitHub, klik **Add file → Upload files**, lalu seret isi folder proyek (bukan file ZIP-nya) ke area unggah. Pastikan struktur seperti `app/`, `tests/`, dan file `README.md` tetap di root repository.
-4. Jika browser tidak mengikutsertakan file/folder tersembunyi, unggah `.gitignore` dan `.editorconfig` secara terpisah. Untuk workflow, gunakan **Add file → Create new file** dan buat `.github/workflows/test.yml`, lalu salin konten dari berkas yang sama pada paket sumber.
-5. Isi pesan commit, misalnya `Modernisasi KTP Checker Android 2.0.0`, lalu klik **Commit changes**. GitHub mendukung hingga 100 file sekali unggah dan batas 25 MiB per file lewat browser; bila perlu, unggah dalam beberapa bagian.
-6. Setelah berkas terlihat di [https://github.com/spyschools/ktp-checkerandroid](https://github.com/spyschools/ktp-checkerandroid), buka **Releases → Draft a new release**, buat tag `v2.0.0`, dan gunakan catatan dari `CHANGELOG.md` jika memang siap diterbitkan. Upload kode sumber tidak otomatis menerbitkan APK atau GitHub Release.
-
-## Struktur folder
+## Struktur utama repository
 
 ```text
 ktp-checkerandroid/
+├── .github/
+│   └── workflows/
+│       └── test.yml
 ├── app/
-│   ├── App_Resources/Android/   # Pengaturan Android, manifest, ikon, dan versi
-│   ├── home/                    # Halaman utama, form, hasil, dan riwayat
+│   ├── App_Resources/Android/   # Resource dan konfigurasi native Android
+│   ├── home/                    # Antarmuka utama dan riwayat
 │   ├── app-root.xml             # Entry point UI
-│   ├── app.css                  # Gaya UI
+│   ├── app.css                  # Gaya aplikasi
 │   ├── app.js                   # Bootstrap NativeScript
-│   └── nik-parser.js            # Pemeriksaan struktur NIK lokal
+│   └── nik-parser.js            # Pemeriksaan pola NIK lokal
 ├── tests/                       # Unit test Node.js
+├── .gitignore
 ├── CHANGELOG.md
 ├── LICENSE
 ├── README.md
@@ -122,8 +135,10 @@ ktp-checkerandroid/
 └── package.json
 ```
 
+`nativescript.config.ts` menunjuk `appResourcesPath` ke `app/App_Resources` karena resource proyek berada di jalur tersebut relatif terhadap root repository.
+
 ## Kredit dan lisensi
 
-Versi ini merupakan refaktor/pemeliharaan atas kode proyek KTP Checker yang diarsipkan dari proyek asal `dyazincahya/ktp-checker-android`. Pengembangan versi ini dilakukan oleh **Fariz Azhari**. Lisensi MIT proyek asal mewajibkan penyertaan pemberitahuan hak cipta dan lisensinya; pemberitahuan tersebut dipertahankan di `LICENSE`. Parser pada versi ini ditulis ulang untuk memeriksa pola dasar dan tidak menyertakan basis data resmi wilayah.
+Versi ini merupakan refaktor/pemeliharaan atas kode proyek KTP Checker yang diarsipkan dari proyek asal [`dyazincahya/ktp-checker-android`](https://github.com/dyazincahya/ktp-checker-android). Pengembangan versi ini dilakukan oleh **Fariz Azhari**. Pemberitahuan hak cipta dan lisensi MIT proyek asal dipertahankan dalam `LICENSE` sesuai ketentuannya. Parser pada versi ini memeriksa pola dasar dan tidak menyertakan basis data resmi wilayah.
 
-Proyek tidak berafiliasi dengan Kementerian Dalam Negeri atau Dukcapil.
+Proyek ini tidak berafiliasi dengan Kementerian Dalam Negeri atau Dukcapil.
