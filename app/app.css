@@ -1,0 +1,148 @@
+Page {
+  background-color: #f3f6fb;
+  color: #1e293b;
+  font-family: sans-serif;
+}
+
+ActionBar {
+  background-color: #173b62;
+  color: #ffffff;
+}
+
+.page-content {
+  padding: 20;
+}
+
+.hero-title {
+  color: #173b62;
+  font-size: 25;
+  font-weight: 700;
+  margin-bottom: 5;
+}
+
+.hero-subtitle {
+  color: #52657a;
+  font-size: 13;
+  margin-bottom: 18;
+}
+
+.card {
+  background-color: #ffffff;
+  border-color: #e1e8f0;
+  border-width: 1;
+  border-radius: 14;
+  padding: 16;
+  margin-bottom: 16;
+}
+
+.section-title {
+  color: #173b62;
+  font-size: 18;
+  font-weight: 700;
+  margin-bottom: 10;
+}
+
+.field-label {
+  color: #42556b;
+  font-size: 13;
+  font-weight: 600;
+  margin-top: 8;
+  margin-bottom: 4;
+}
+
+.input-field {
+  background-color: #f7f9fc;
+  border-color: #d4deea;
+  border-width: 1;
+  border-radius: 8;
+  color: #172b42;
+  padding: 10;
+  margin-bottom: 5;
+}
+
+.btn-primary {
+  background-color: #1769aa;
+  color: #ffffff;
+  border-radius: 9;
+  font-size: 15;
+  font-weight: 700;
+  padding: 12;
+  margin-top: 12;
+}
+
+.btn-secondary {
+  background-color: #e8eef5;
+  color: #173b62;
+  border-radius: 9;
+  font-size: 13;
+  padding: 9;
+  margin-top: 8;
+}
+
+.helper-text {
+  color: #65758a;
+  font-size: 12;
+  margin-top: 8;
+}
+
+.warning-text {
+  color: #8a4b08;
+  background-color: #fff4de;
+  border-radius: 8;
+  font-size: 12;
+  padding: 10;
+  margin-top: 10;
+}
+
+.error-text {
+  color: #a32828;
+  font-size: 13;
+  font-weight: 600;
+  margin-top: 10;
+}
+
+.status-ok {
+  color: #176b43;
+  font-size: 16;
+  font-weight: 700;
+  margin-bottom: 6;
+}
+
+.result-label {
+  color: #728096;
+  font-size: 12;
+  margin-top: 10;
+}
+
+.result-value {
+  color: #24364b;
+  font-size: 15;
+  font-weight: 600;
+  margin-top: 2;
+}
+
+.history-item {
+  padding: 10;
+  border-bottom-width: 1;
+  border-bottom-color: #e4eaf2;
+}
+
+.history-name {
+  color: #1f344b;
+  font-size: 14;
+  font-weight: 700;
+}
+
+.history-meta {
+  color: #66758a;
+  font-size: 12;
+  margin-top: 3;
+}
+
+.footer-text {
+  color: #728096;
+  font-size: 11;
+  text-align: center;
+  margin-top: 5;
+  margin-bottom: 16;
+}

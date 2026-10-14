@@ -1,0 +1,78 @@
+<Page navigatingTo="onNavigatingTo" xmlns="http://schemas.nativescript.org/tns.xsd">
+  <ActionBar title="KTP Checker" />
+  <ScrollView>
+    <StackLayout class="page-content">
+      <Label text="KTP Checker" class="hero-title" />
+      <Label text="Pemeriksaan pola dasar NIK Indonesia — lokal, tanpa koneksi internet." class="hero-subtitle" textWrap="true" />
+
+      <StackLayout class="card">
+        <Label text="Periksa NIK" class="section-title" />
+        <Label text="Nama / alias (opsional)" class="field-label" />
+        <TextField text="{{ fullname }}" hint="Jangan gunakan nama asli bila tidak diperlukan" class="input-field" returnKeyType="next" />
+        <Label text="Nomor Induk Kependudukan (16 digit)" class="field-label" />
+        <TextField text="{{ nik }}" hint="Masukkan 16 digit NIK" class="input-field" keyboardType="number" maxLength="16" returnKeyType="done" />
+        <Button text="PERIKSA POLA NIK" class="btn-primary" tap="onCheckTap" />
+        <Label text="{{ message }}" class="warning-text" textWrap="true" visibility="{{ hasMessage ? 'visible' : 'collapsed' }}" />
+        <Label text="Data tidak dikirim ke server. Hindari memasukkan data pribadi orang lain tanpa izin." class="helper-text" textWrap="true" />
+      </StackLayout>
+
+      <StackLayout class="card" visibility="{{ hasResult ? 'visible' : 'collapsed' }}">
+        <Label text="Hasil pemeriksaan" class="section-title" />
+        <Label text="{{ resultStatus }}" class="status-ok" textWrap="true" />
+        <Label text="Nomor NIK" class="result-label" />
+        <Label text="{{ resultNik }}" class="result-value" />
+        <Label text="Nama / alias" class="result-label" />
+        <Label text="{{ resultName }}" class="result-value" />
+        <Label text="Jenis kelamin menurut pola tanggal" class="result-label" />
+        <Label text="{{ resultGender }}" class="result-value" />
+        <Label text="Tanggal lahir hasil pembacaan pola" class="result-label" />
+        <Label text="{{ resultBirthDate }}" class="result-value" />
+        <Label text="Hari lahir" class="result-label" />
+        <Label text="{{ resultWeekday }}" class="result-value" />
+        <Label text="Perkiraan usia" class="result-label" />
+        <Label text="{{ resultAge }}" class="result-value" />
+        <Label text="Zodiak (perkiraan)" class="result-label" />
+        <Label text="{{ resultZodiac }}" class="result-value" />
+        <Label text="Kode wilayah 6 digit (tidak dipetakan ke nama wilayah)" class="result-label" textWrap="true" />
+        <Label text="{{ resultAreaCode }}" class="result-value" />
+        <Label text="Kode provinsi / kabupaten / kecamatan" class="result-label" textWrap="true" />
+        <Label text="{{ resultAreaSegments }}" class="result-value" />
+        <Label text="Nomor urut" class="result-label" />
+        <Label text="{{ resultSerialNumber }}" class="result-value" />
+        <Label text="Waktu pemeriksaan" class="result-label" />
+        <Label text="{{ resultCheckedAt }}" class="result-value" />
+        <Label text="Penting: hasil ini tidak membuktikan NIK terdaftar, aktif, atau asli. Tidak ada koneksi ke database Dukcapil." class="warning-text" textWrap="true" />
+      </StackLayout>
+
+      <StackLayout class="card">
+        <GridLayout columns="*,auto" rows="auto">
+          <Label text="Riwayat lokal" class="section-title" row="0" col="0" />
+          <Label text="{{ historyCount }}" class="helper-text" row="0" col="1" verticalAlignment="center" />
+        </GridLayout>
+        <Label text="Belum ada riwayat tersimpan." class="helper-text" visibility="{{ hasHistory ? 'collapsed' : 'visible' }}" />
+        <ListView items="{{ history }}" height="260" separatorColor="#e4eaf2" itemTap="onHistoryItemTap" visibility="{{ hasHistory ? 'visible' : 'collapsed' }}">
+          <ListView.itemTemplate>
+            <GridLayout class="history-item" columns="*,auto" rows="auto,auto,auto">
+              <Label text="{{ fullname }}" class="history-name" row="0" col="0" textWrap="true" />
+              <Label text="{{ nik }}" class="history-meta" row="1" col="0" />
+              <Label text="{{ checkedAt }}" class="history-meta" row="2" col="0" />
+              <Label text="LIHAT" class="history-meta" row="0" col="1" rowSpan="2" verticalAlignment="center" />
+            </GridLayout>
+          </ListView.itemTemplate>
+        </ListView>
+        <Button text="HAPUS SEMUA RIWAYAT" class="btn-secondary" tap="onClearHistoryTap" visibility="{{ hasHistory ? 'visible' : 'collapsed' }}" />
+        <Label text="Riwayat disimpan di penyimpanan privat aplikasi pada perangkat ini, tidak dienkripsi secara terpisah, dan dapat dihapus di atas." class="helper-text" textWrap="true" />
+      </StackLayout>
+
+      <StackLayout class="card">
+        <Label text="Tentang aplikasi" class="section-title" />
+        <Label text="{{ versionLine }}" class="result-value" />
+        <Label text="{{ releaseLine }}" class="result-label" />
+        <Label text="{{ authorLine }}" class="result-label" />
+        <Button text="Buka GitHub spyschools" class="btn-secondary" tap="onOpenGithubTap" />
+      </StackLayout>
+
+      <Label text="KTP Checker • pemeriksaan format saja • bukan layanan resmi pemerintah" class="footer-text" textWrap="true" />
+    </StackLayout>
+  </ScrollView>
+</Page>
